@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배열(Array)</title>
+</head>
+<body>
+    <h1>배열</h1>
+    <script>
+        //배열
+        let sesons = ['봄', '여름', '가을', '겨울'];
+        console.log(sesons);
+        console.log(sesons.length);
+        console.log(sesons[2]);
+
+        //일반 for문
+        for(let i = 0; i<sesons.length; i++){
+            console.log(sesons[i]);
+        }
+
+        //for in : index
+        for(let idx in sesons){
+            console.log(sesons[idx]);
+        }
+
+        //for of : element(값)
+        for(let ele of sesons){
+            console.log(ele);
+        }
+
+        //배열 합치기(연결)
+        let colors = ['빨강','파랑','노랑','주황',];
+        let concats = colors.concat(sesons);
+
+        console.log(concats);
+        
+        for(let ele of concats){
+            console.log(ele);
+        }
+
+        //배열 -> 문자열
+        console.log(sesons.join(' : ')); //이건 배열자체가 바뀌는 것은 아님
+        //배열 순서 반대로
+        console.log(colors.reverse());
+        console.log(colors);//revers 떄문에 배열자체 구성이 반대로 됨
+
+        //배열 요소 추가
+        sesons.push('늦겨울');
+        sesons.unshift('이른 봄');
+        //배열 요소 제거
+        sesons.pop();
+        sesons.pop();
+        sesons.shift();
+        console.log(sesons);
+
+        //배열의 합을 구해서 마지막에 저장
+        let numbers = [10,20,30,40,50];
+        let sum = 0;
+
+        for(let ele of numbers){
+            sum += ele
+        }
+        numbers.push(sum);
+        console.log(numbers);
+
+        console.log(concats);
+        console.log(concats.splice(2,3,'삽입'));
+        console.log(concats);
+        
+        let mycolors = concats.slice(3,5);
+        console.log(mycolors);
+        console.log(concats);
+        
+        //삽입 자리에서 빨강, 검정을 추가
+        concats.splice(2,0,'빨강','검정');
+        console.log(concats);
+
+        //배열의 요소 위치 찾기
+        let number = [3,33];
+        console.log(colors);
+        console.log(number.indexOf(33));
+        console.log(colors.indexOf("검은"));
+        console.log(Array.isArray(colors));
+
+        //배열의 순회(처음부터 끝까지 돌리기)
+        colors.forEach(function(ele, idx){
+            console.log(`${idx}-> ${ele}`);
+        })
+
+        //연산 후 새로운 배열 생성
+        console.log(numbers);
+        let arrNew = numbers.map(function(ele){
+            return ele * 1.1;
+        })//1번
+        let arrNew1 = numbers.map((ele) => ele * 1.1);//2번 (1번, 2번 같은 결과, 화살표는 this 사용시 window 객체?를 가져와서 불가능)
+        
+        console.log(arrNew);
+        console.log(arrNew1);
+        
+        //조건에 만족하는 요소 추출 -> 새로운 배열
+        let arrfilter = numbers.filter(function(ele){
+            return ele < 30;
+        })
+        console.log(arrfilter);
+        console.log(arrfilter.every(function(ele){// 전부다 30보다 작은지
+            return ele < 30;
+        }))
+        console.log(arrfilter.every((ele) => ele < 30));
+        console.log(numbers.some((ele) => ele < 30));//30보다 작은게 있는지
+
+        //배열의 합
+        let arrSum = numbers.reduce((p,c) => p+c);
+        console.log(arrSum);
+
+        //배열 정렬
+        console.log(colors.sort());
+        console.log(colors.reverse());
+        console.log(arrNew.sort((a,b) => a-b));//숫자 오름차순
+        console.log(arrNew.sort((a,b) => b-a));//숫자 내림차순
+
+
+    </script>
+</body>
+</html>
