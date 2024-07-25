@@ -4,10 +4,14 @@ const port = 3000;
 const userRouter = require("./routes/user.js");
 const productRouter = require("./routes/product.js");
 const loginRouter = require("./routes/login.js");
+const customerRouter = require("./routes/customer2.js");
+
 const cors = require("cors");
 const morgan = require("morgan");
+
 const session = require("express-session");
 const fileStore = require("session-file-store")(session);
+
 const cookieParser = require("cookie-parser");
 const multer = require("multer");
 const upload = multer({ dest: "c:/temp" });
@@ -50,6 +54,10 @@ app.get("/", (req, res) => {
 
 app.use("/member", userRouter);
 app.use("/users", loginRouter);
+app.use("/product", productRouter);
+app.use("/customer", customerRouter);
+
+//에러페이지 처리
 
 app.listen(port, () => {
   console.log(`server runing http://localhost:${port}`);
