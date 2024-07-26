@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://unpkg.com/react/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <div id="root"></div>
+    <script type="text/babel">
+      const name = "save";
+      const imageSrc = {
+        name: "복서",
+        src: "2024 HBD MOKOKO_NORABABA.jpg",
+        desc: "강아지",
+      };
+      const imageStyle = { width: "200px", border: "1px solide" };
+      const imageYn = true;
+      const products = [
+        { title: "Cabbage", id: 1 },
+        { title: "Garlic", id: 2 },
+        { title: "Apple", id: 3 },
+      ];
+
+      function Customer() {
+        let [data, setData] = React.useState([]);
+        React.useEffect(async () => {
+          let result = await fetch("http://localhost:3000/customer");
+          let customerData = await result.json();
+          setData(customerData);
+        }, []);
+        function addCustomer() {
+          setData([...data, { id: 1, name: "choi" }]);
+        }
+        return (
+          <div>
+            <button onClick={addCustomer}>추가</button>
+            <table>
+              {data.map((element) => (
+                <tr key={element.id}>
+                  <td>{element.id}</td>
+                  <td>{element.name}</td>
+                  <td>{element.email}</td>
+                  <td>{element.phone}</td>
+                  <td>{element.address}</td>
+                </tr>
+              ))}
+            </table>
+          </div>
+        );
+      }
+
+      function MyButton() {
+        function handler() {
+          alert("클릭됨");
+        }
+        return (
+          <button className="btn" onClick={handler}>
+            {name}
+          </button>
+        );
+      }
+
+      function MyImage() {
+        return (
+          <div>
+            <img
+              src={imageSrc.src}
+              alt={imageSrc.desc}
+              style={imageStyle}
+            ></img>
+            <p>{imageSrc.name}</p>
+          </div>
+        );
+      }
+
+      let lis = products.map((ele, idx) => <li key={idx}>{ele.title}</li>);
+      const element = (
+        <div>
+          {imageYn ? <MyImage /> : <MyButton />}
+          <MyButton />
+          <h1>Hello, world!</h1>
+          <ul>{lis}</ul>
+          <Customer />
+        </div>
+      );
+      const domContainer = document.querySelector("#root");
+      const root = ReactDOM.createRoot(domContainer); // React 18
+      root.render(element);
+    </script>
+  </body>
+</html>
