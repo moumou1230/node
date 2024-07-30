@@ -1,38 +1,70 @@
 import "./App.css";
+
+function ProductCategoryRow({ category }) {
+  return (
+    <tr>
+      <th colSpan="2">{category}</th>
+    </tr>
+  );
+}
+
+function ProductRow({ product }) {
+  const name = product.stocked ? (
+    product.name
+  ) : (
+    <span style={{ color: "red" }}>{product.name}</span>
+  );
+
+  return (
+    <tr>
+      <td>{name}</td>
+      <td>{product.price}</td>
+    </tr>
+  );
+}
+
 function ProductTable({ products }) {
-  let row = [];
-  let catnull = null;
+  const rows = [];
+  let lastCategory = null;
 
   products.forEach((product) => {
-    if (product.category != catnull) {
-      row.push;
+    if (product.category !== lastCategory) {
+      rows.push(
+        <ProductCategoryRow
+          category={product.category}
+          key={product.category}
+        />
+      );
     }
+    rows.push(<ProductRow product={product} key={product.name} />);
+    lastCategory = product.category;
   });
+
   return (
     <table>
       <thead>
         <tr>
           <th>Name</th>
-
           <th>Price</th>
         </tr>
       </thead>
-      <tbody>{row}</tbody>
+      <tbody>{rows}</tbody>
     </table>
   );
 }
+
 function SearchBar() {
   return (
-    <>
-      <input placeholder="Search..."></input>
+    <form>
+      <input type="text" placeholder="Search..." />
       <label>
-        <input type="checkbox"></input>
-        Only show products in shock
+        <input type="checkbox" /> Only show products in stock
       </label>
-    </>
+    </form>
   );
 }
-function FilterProductTable({ products }) {
+
+function FilterableProductTable({ products }) {
   return (
     <div>
       <SearchBar />
@@ -51,5 +83,5 @@ const PRODUCTS = [
 ];
 
 export default function App() {
-  return <FilterProductTable products={PRODUCTS}></FilterProductTable>;
+  return <FilterableProductTable products={PRODUCTS} />;
 }

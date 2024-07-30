@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = 80;
 const userRouter = require("./routes/user.js");
 const productRouter = require("./routes/product.js");
 const loginRouter = require("./routes/login.js");
