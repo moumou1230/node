@@ -2,7 +2,9 @@
 const mysql = require("mysql2");
 const customersql = require("./customer_sql.js");
 const productsql = require("./product_sql.js");
-const sql = { ...customersql, ...productsql };
+const boardsql = require("./board_sql.js");
+
+const sql = { ...customersql, ...productsql, ...boardsql };
 
 const conn = {
   host: "127.0.0.1",
