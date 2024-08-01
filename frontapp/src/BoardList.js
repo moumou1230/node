@@ -42,6 +42,9 @@ export default function BoardList() {
 
   return (
     <div>
+      <button>
+        <Link to={"/insert"}>글쓰기</Link>
+      </button>
       <table>
         <thead>
           <tr>
@@ -54,9 +57,9 @@ export default function BoardList() {
 
         <CusList board={board} />
       </table>
-      {lastPage}
+      {/* {lastPage} */}
       {[...Array(lastPage)].map((p, idx) => (
-        <Link to={"/list?page=" + idx}>{idx}</Link>
+        <Link to={"/list?page=" + (idx + 1)}>{idx + 1 + " "}</Link>
       ))}
     </div>
   );

@@ -15,9 +15,9 @@ export default function BoardInsert() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handlerSave = () => {
+  const handlerSave = async () => {
     //ajax등록처리
-    axios.post("http://localhost/board", form);
+    await axios.post("http://localhost/board", form);
     //목록으로 이동
     navigator("/list");
   };
