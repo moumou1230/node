@@ -2,7 +2,7 @@ import { legacy_createStore as createStore } from "redux";
 import { Provider, useSelector, useDispatch } from "react-redux";
 //1.reduce 선언
 function reducer(currentState, action) {
-  const newState = { ...currentState }; //스테이트 불변의 원칙 = > 복제해서 변경=>스테이트 교체
+  const newState = { ...currentState }; //state 불변의 원칙 = > 복제해서 변경=>스테이트 교체
   if (currentState == undefined) {
     return { number: 1 };
   }

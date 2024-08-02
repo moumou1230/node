@@ -33,7 +33,7 @@ export default function CustomerList(props) {
   }
   useEffect(() => {
     list();
-  }, []);
+  });
 
   return (
     <>

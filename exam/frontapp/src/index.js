@@ -3,15 +3,8 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 
 import "./index.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-
-//import App from "./Comp08_Form_Ref";
-//import App from "./Comp09_Router";
-import App from "./layoutComponent";
-//import App from "./Comp14_Reduxtoollkit";
-//import App from "./BoardComponent";
-
-import reportWebVitals from "./BoardComponent";
+import App from "./board";
+import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
